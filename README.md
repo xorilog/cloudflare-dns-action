@@ -13,14 +13,13 @@ workflow "on push to master, adjust domain on Cloudflare" {
 action "set cloudflare dns record" {
   uses = "xorilog/cloudflare-dns-action@master"
   env = {
-    CLOUDFLARE_EMAIL = "you@exemple.com",
     RECORD_DOMAIN = "site.example.com",
     RECORD_TYPE = "A",
     RECORD_VALUE = "192.168.0.11",
     RECORD_NAME = "terraform",
     RECORD_TTL = 3600
   }
-  secrets = [ "CLOUDFLARE_TOKEN" ]
+  secrets = [ "CLOUDFLARE_EMAIL", "CLOUDFLARE_TOKEN" ]
 }
 ```
 
