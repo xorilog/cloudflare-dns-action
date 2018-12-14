@@ -17,12 +17,9 @@ variable "record_name" {
 
 variable "record_value" {
   default = "RECORD_VALUE"
+  type = "string"
 }
 
 variable "record_type" {
   default = "RECORD_TYPE"
-}
-
-variable "record_ttl" {
-  default = "RECORD_TTL"
 }

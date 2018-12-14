@@ -7,6 +7,8 @@ LABEL "com.github.actions.color"="orange"
 
 RUN apk add --no-cache \
 	git \
+	jq \
+	curl \
 	make
 
 COPY terraform /usr/src/terraform

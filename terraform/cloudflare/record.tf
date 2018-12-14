@@ -5,9 +5,9 @@ provider "cloudflare" {
 }
 
 resource "cloudflare_record" "record" {
-  domain = "${var.cloudflare_zone}"
+  domain = "${var.record_domain}"
   name   = "${var.record_name}"
   value  = "${var.record_value}"
   type   = "${var.record_type}"
-  ttl    = "${var.record_ttl}"
+  ttl    = 1
 }

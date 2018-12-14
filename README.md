@@ -17,7 +17,6 @@ action "set cloudflare dns record" {
     RECORD_TYPE = "A",
     RECORD_VALUE = "192.168.0.11",
     RECORD_NAME = "terraform",
-    RECORD_TTL = 3600
   }
   secrets = [ "CLOUDFLARE_EMAIL", "CLOUDFLARE_TOKEN" ]
 }
