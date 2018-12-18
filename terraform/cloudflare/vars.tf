@@ -23,3 +23,7 @@ variable "record_value" {
 variable "record_type" {
   default = "RECORD_TYPE"
 }
+
+variable "record_ttl" {
+  default = 1
+}

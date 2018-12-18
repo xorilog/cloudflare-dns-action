@@ -9,5 +9,5 @@ resource "cloudflare_record" "record" {
   name   = "${var.record_name}"
   value  = "${var.record_value}"
   type   = "${var.record_type}"
-  ttl    = 1
+  ttl    = "${var.record_ttl}"
 }

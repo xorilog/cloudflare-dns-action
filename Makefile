@@ -7,8 +7,10 @@ RECORD_DOMAIN := ${RECORD_DOMAIN}
 RECORD_NAME := ${RECORD_NAME}
 RECORD_VALUE := ${RECORD_VALUE}
 RECORD_TYPE := ${RECORD_TYPE}
-ZONEID := $(shell curl -X GET "https://api.cloudflare.com/client/v4/zones?name=$(RECORD_DOMAIN)&status=active&page=1&per_page=20&order=status&direction=desc&match=all" -H "X-Auth-Email: $(CLOUDFLARE_EMAIL)" -H "X-Auth-Key: $(CLOUDFLARE_TOKEN)" -H "Content-Type: application/json" | jq -r '.result[].id')
-RECORD_ID := $(shell curl -X GET "https://api.cloudflare.com/client/v4/zones/$(ZONEID)/dns_records?name=$(RECORD_NAME).$(RECORD_DOMAIN)&page=1&per_page=20&order=type&direction=desc&match=all" -H "X-Auth-Email: $(CLOUDFLARE_EMAIL)" -H "X-Auth-Key: $(CLOUDFLARE_TOKEN)" -H "Content-Type: application/json"| jq -r '.result[].id')
+RECORD_TTL ?= 1
+
+ZONEID := $(shell curl -s -X GET "https://api.cloudflare.com/client/v4/zones?name=$(RECORD_DOMAIN)&status=active&page=1&per_page=20&order=status&direction=desc&match=all" -H "X-Auth-Email: $(CLOUDFLARE_EMAIL)" -H "X-Auth-Key: $(CLOUDFLARE_TOKEN)" -H "Content-Type: application/json" | jq -r '.result[].id')
+RECORD_ID := $(shell curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$(ZONEID)/dns_records?name=$(RECORD_NAME).$(RECORD_DOMAIN)&page=1&per_page=20&order=type&direction=desc&match=all" -H "X-Auth-Email: $(CLOUDFLARE_EMAIL)" -H "X-Auth-Key: $(CLOUDFLARE_TOKEN)" -H "Content-Type: application/json"| jq -r '.result[].id')
 
 CF_DIR=$(CURDIR)/terraform/cloudflare
 TERRAFORM_FLAGS :=
@@ -18,7 +20,8 @@ CF_TERRAFORM_FLAGS = -var "cloudflare_email=$(CLOUDFLARE_EMAIL)" \
 		-var "record_domain=$(RECORD_DOMAIN)" \
 		-var "record_name=$(RECORD_NAME)" \
 		-var "record_value=$(RECORD_VALUE)" \
-		-var "record_type=$(RECORD_TYPE)"
+		-var "record_type=$(RECORD_TYPE)" \
+		-var "record_ttl=$(RECORD_TTL)"
 
 .PHONY: help
 help:
@@ -32,6 +35,7 @@ cf-init:
 	@:$(call check_defined, RECORD_NAME, Record name)
 	@:$(call check_defined, RECORD_VALUE, Record value)
 	@:$(call check_defined, RECORD_TYPE, Record type)
+	@:$(call check_defined, RECORD_TTL, Record TTL)
 	@cd $(CF_DIR) && terraform init $(CF_TERRAFORM_FLAGS)		
 
 .PHONY: cf-import
