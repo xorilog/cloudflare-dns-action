@@ -1,4 +1,4 @@
-# Cloudflare Worker GitHub Action
+# Cloudflare DNS GitHub Action
 
 [![Build Status](https://travis-ci.org/xorilog/cloudflare-dns-action.svg?branch=master)](https://travis-ci.org/xorilog/cloudflare-dns-action)
 
