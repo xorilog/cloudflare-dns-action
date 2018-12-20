@@ -23,7 +23,7 @@ action "set cloudflare dns record" {
 }
 ```
 
-_Heavily_ inspired by [Jessie Frazelle's](https://twitter.com/jessfraz) [aws-fargate-action](https://github.com/jessfraz/aws-fargate-action) GitHub action project. :trophy:
+_Heavily_ inspired by [Jessie Frazelle's](https://twitter.com/jessfraz) [aws-fargate-action](https://github.com/jessfraz/aws-fargate-action) and [Chris Pilsworth](https://twitter.com/cpilsworth) [cloudflare-worker-action](https://github.com/cpilsworth/cloudflare-worker-action) GitHub action project. :trophy:
 
 ### Tests
 
