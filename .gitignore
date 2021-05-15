@@ -1,48 +1,18 @@
-###Go###
-
-# Compiled Object files, Static and Dynamic libs (Shared Objects)
-*.o
-*.a
-*.so
-
-# Folders
-_obj
-_test
-
-# Architecture specific extensions/prefixes
-*.[568vq]
-[568vq].out
-
-*.cgo1.go
-*.cgo2.c
-_cgo_defun.c
-_cgo_gotypes.go
-_cgo_export.*
-
-_testmain.go
-
-*.exe
-*.test
-
-
-###OSX###
-
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must ends with two \r.
-Icon
-
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Terraform
-.terraform/
-terraform.tfstate*
-.terraform.tfstate*
+.cache
+npm-debug.log
+Thumbs.db
+node_modules/
+.build/
+extensions/**/dist/
+/out*/
+/extensions/**/out/
+src/vs/server
+resources/server
+build/node_modules
+coverage/
+test_data/
+test-results/
+yarn-error.log
+vscode.lsif
+vscode.db
